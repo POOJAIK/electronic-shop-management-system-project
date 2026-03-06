@@ -1,0 +1,8 @@
+# Ignore application configuration with secrets
+src/main/resources/application.properties
+
+#Ignore IntelliJ project files
+.idea
+
+#Ignore build files
+target/
