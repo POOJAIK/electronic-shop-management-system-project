@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - ESMS</title>
+    <link rel="stylesheet" href="/css/Style.css"/>
+</head>
+<body>
+    <h2>Customer Login</h2>
+
+<!--    Error message -->
+    <p th:if="${param.error}" style="color:red;">
+        Invaild email or password!
+    </p>
+
+<!--    Successful message after register-->
+    <p th:if="${param.registered}" style="color:green;">
+        Registration successful! Please login.
+    </p>
+
+    <form action="/login" method="post">
+
+        <label>Email</label><br>
+        <input type="email" name="email" required><br><br>
+
+        <label>Password</label><br>
+        <input type="password" name="password" required><br><br>
+
+        <button type="submit">Login</button>
+
+    </form>
+
+    <br>
+    <a href="/signup">Don't have account? Signup</a><br>
+    <a href="/">Back to Home</a>
+
+</body>
+</html>

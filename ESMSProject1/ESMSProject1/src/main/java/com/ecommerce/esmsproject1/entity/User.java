@@ -1,7 +1,6 @@
-package com.ecommerce.ESMSProject1.entity;
+package com.ecommerce.esmsproject1.entity;
 
 import jakarta.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "users")
