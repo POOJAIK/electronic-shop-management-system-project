@@ -1,4 +1,6 @@
 # Ignore application configuration with secrets
+#ESMSProject1/ESMSProject1/src/main/resources/application.properties
+
 ESMSProject1/ESMSProject1/src/main/resources/application.properties
 
 #Ignore IntelliJ project files
