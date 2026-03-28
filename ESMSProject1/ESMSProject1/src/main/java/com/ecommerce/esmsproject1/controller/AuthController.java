@@ -42,7 +42,7 @@ public class AuthController {
 
         System.out.println("Login attempt:" +user.getEmail()); // debug line
 
-        //DB me email se user dhundo
+        //Database me email se user dhundo
         User existingUser = userRepository.findByEmail(user.getEmail());
 
         System.out.println(("Found user: " + existingUser));
@@ -50,7 +50,8 @@ public class AuthController {
         if (existingUser != null && existingUser.getPassword().equals(user.getPassword())) {
             //login successful
             session.setAttribute("loggedInUser", existingUser);
-            return "redirect:/products"; //Products page pe bhejo
+            //Products page pe bhejo
+            return "redirect:/products";
         }else {
             //login failed
             return "redirect:/login?error=true";
