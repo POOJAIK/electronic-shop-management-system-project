@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Electronic Shop Management System</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1>Welcome to Electronic Shop Management System</h1>
+
+<!--navbar-->
+<header>
+<div class="navbar">
+    <h2>Electronic Shop Management System</h2>
+
+    <div class="navbar-links">
+        <a href="/">Home</a>
+        <a href="/products">Products</a>
+
+<!--        login nhi hai toh dikhe  -->
+        <a href="/signup" th:if="${session.loggedInUser == null}">Signup</a>
+        <a href="/login" th:if="${session.loggedInUser == null}">Login</a>
+
+<!--        login hai toh dikhe-->
+        <a href="/logout" th:if="${session.loggedInUser != null}">Logout</a>
+
+<!--       user ka naam dikhe -->
+        <span th:if="${session.loggedInUser != null}"
+              th:text="'Hello,' + ${session.loggedInUser.name}">
+        </span>
+    </div>
+</div>
+</header>
+<!--    hero section-->
+    <section class="hero">
+        <h1>Welcome to Electronic Shop Management System</h1>
+        <p>Best place to buy electronics online</p>
+        <button onclick="window.location.href='/products'">Shop Now</button>
+    </section>
+
+<!--    footer -->
+    <footer class="footer">
+        <p>© 2026 Electronic Shop Management System. All rights reserved. </p>
+    </footer>
+
 </body>
 </html>

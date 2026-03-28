@@ -1,4 +1,4 @@
-package com.ecommerce.ESMSProject1;
+package com.ecommerce.esmsproject1;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

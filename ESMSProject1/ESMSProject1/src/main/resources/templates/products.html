@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Products - ESMS</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+
+<header>
+    <div class="navbar">
+        <h2>Electronic Shop Management System</h2>
+        <div class="navbar-links">
+            <a href="/">Home</a>
+            <a href="/products">Products</a>
+            <!--     login nahi hai       -->
+            <a href="/signup.html" th:if="${session.loggedInUser == null}">Signup</a>
+            <!--     login hai       -->
+            <a href="/login.html" th:if="${session.loggedInUser == null}">Login</a>
+            <a href="/logout" th:if="${session.loggedInUser != null}">Logout</a>
+            <span th:if="${session.loggedInUser != null}"
+                  th:text="'Hello,' + ${session.loggedInUser.name}">
+            </span>
+        </div>
+    </div>
+</header>
+
+<!--    products -->
+    <h1>Our Products</h1>
+    <div class="products-container">
+        <div class="product-card" th:each="product : ${productsList}">
+
+            <img th:src="@{${product.imageUrl}}" alt="product"/>
+            <h3 th:text="${product.name}"></h3>
+            <p th:text="${product.description}"></p>
+            <p th:text="${product.price}"></p>
+            <button>Add to Cart</button>
+        </div>
+    </div>
+</body>
+</html>
