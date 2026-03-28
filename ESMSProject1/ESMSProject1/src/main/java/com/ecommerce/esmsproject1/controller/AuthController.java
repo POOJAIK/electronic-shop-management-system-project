@@ -19,7 +19,8 @@ public class AuthController {
 
     @GetMapping("/signup")
     public String showSignupPage() {
-        return "signup";     //signup.html
+        //signup.html
+        return "signup";
     }
 
     //form submit hone pe yahan aayega
