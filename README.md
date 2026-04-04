@@ -1,19 +1,19 @@
 - ESMS - Electronic Shop management System
 
-A full-stack web application for managing an electronic shop - built with Spring Boot, MsSQL, and Thymeleaf.
+  A full-stack web application for managing an electronic shop - built with Spring Boot, MsSQL, and   Thymeleaf.
 
 - Tech Stack
 - Technology : Usage
-- Java 17 : Backend Language
-- Spring Boot 4.0 : Web Framework
-- MySQL 8 : Database
-- Hibernate JPA : ORM
-- Thymeleaf : Template Engine
-- Bootstrap 5 : Frontend Styling
-- Spring Security : Authentication
-- Maven : Build Tool
+1. Java 17 : Backend Language
+2. Spring Boot 4.0 : Web Framework
+3. MySQL 8 : Database
+4. Hibernate JPA : ORM
+5. Thymeleaf : Template Engine
+6. Bootstrap 5 : Frontend Styling
+7. Spring Security : Authentication
+8. Maven : Build Tool
 
-Features:
+- Features:
 1. Authentication:
 - User Signup with name, email, password, address
 - User Login with email and password
