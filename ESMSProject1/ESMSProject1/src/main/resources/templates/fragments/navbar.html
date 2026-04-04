@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>-->
+<body>
+<!--th:fragment yeh define karta hai fragment ka naam-->
+
+<header th:fragment="navbar">
+    <div class="navbar">
+        <h2>Electronic Shop Management system</h2>
+        <div class="navbar-links">
+            <a href="/">Home</a>
+            <a href="/products">Products</a>
+
+        <!-- admin  -->
+            <a href="/admin"
+                th:if="${session.loggedInUser != null}">Admin</a>
+            <a href="/admin/billing"
+                th:if="${session.loggedInUser != null}">Billing</a>
+
+        <!-- Login nahi hai toh -->
+            <a href="/signup"
+               th:if="${session.loggedInUser == null}">Signup</a>
+            <a href="/login"
+               th:if="${session.loggedInUser == null}">Login</a>
+
+        <!-- Login hai toh -->
+            <a href="/logout"
+               th:if="${session.loggedInUser != null}">Logout</a>
+            <span th:if="${session.loggedInUser != null}"
+                  th:text="'Hello,' + ${session.loggedInUser.name}">
+            </span>
+        </div>
+    </div>
+</header>
+
+</body>
+</html>

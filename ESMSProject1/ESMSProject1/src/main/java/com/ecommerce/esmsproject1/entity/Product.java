@@ -15,6 +15,9 @@ public class Product {
     private double price;
     private String imageUrl;
 
+    @Column(nullable = false)
+    private int stockQty = 0;
+
     //constructors
     public Product() {}
 
@@ -30,6 +33,7 @@ public class Product {
     public Long getId() {
         return id;
     }
+    public void setId(Long id) {this.id =id;}
 
     public String getName() {
         return name;
@@ -58,5 +62,8 @@ public class Product {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+    public int getStockQty() { return stockQty; }
+    public void setStockQty(int stockQty) { this.stockQty = stockQty; }
 
 }

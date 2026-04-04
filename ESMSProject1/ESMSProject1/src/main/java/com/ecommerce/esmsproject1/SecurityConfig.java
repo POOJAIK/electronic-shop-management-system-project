@@ -27,7 +27,8 @@ public class SecurityConfig {
 
                 //formlogin hatao - custom controller use karega
                 .formLogin(form -> form.disable())
-                .logout(logout -> logout.disable());
+                .logout(logout -> logout.disable()
+                );
         return http.build();
     }
 }

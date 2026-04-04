@@ -32,3 +32,12 @@ update Products set image_url = '/images/Samsung Galaxy S25 Ultra.jpg' where id 
 set sql_safe_updates = 1;
 
 select id, name, image_url from products;
+
+delete from bill_items;
+
+delete from bills;
+
+alter table bills modify column total_amount double;
+
+set sql_safe_updates = 1;
+

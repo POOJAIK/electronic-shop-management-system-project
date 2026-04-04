@@ -8,28 +8,8 @@
 <body>
 
 <!--navbar-->
-<header>
-<div class="navbar">
-    <h2>Electronic Shop Management System</h2>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
 
-    <div class="navbar-links">
-        <a href="/">Home</a>
-        <a href="/products">Products</a>
-
-<!--        login nhi hai toh dikhe  -->
-        <a href="/signup" th:if="${session.loggedInUser == null}">Signup</a>
-        <a href="/login" th:if="${session.loggedInUser == null}">Login</a>
-
-<!--        login hai toh dikhe-->
-        <a href="/logout" th:if="${session.loggedInUser != null}">Logout</a>
-
-<!--       user ka naam dikhe -->
-        <span th:if="${session.loggedInUser != null}"
-              th:text="'Hello,' + ${session.loggedInUser.name}">
-        </span>
-    </div>
-</div>
-</header>
 <!--    hero section-->
     <section class="hero">
         <h1>Welcome to Electronic Shop Management System</h1>

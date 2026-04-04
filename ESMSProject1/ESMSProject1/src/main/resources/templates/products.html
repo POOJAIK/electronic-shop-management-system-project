@@ -6,25 +6,7 @@
     <link rel="stylesheet" href="/css/style.css"/>
 </head>
 <body>
-
-<header>
-    <div class="navbar">
-        <h2>Electronic Shop Management System</h2>
-        <div class="navbar-links">
-            <a href="/">Home</a>
-            <a href="/products">Products</a>
-            <!--     login nahi hai       -->
-            <a href="/signup.html" th:if="${session.loggedInUser == null}">Signup</a>
-            <!--     login hai       -->
-            <a href="/login.html" th:if="${session.loggedInUser == null}">Login</a>
-            <a href="/logout" th:if="${session.loggedInUser != null}">Logout</a>
-            <span th:if="${session.loggedInUser != null}"
-                  th:text="'Hello,' + ${session.loggedInUser.name}">
-            </span>
-        </div>
-    </div>
-</header>
-
+<div th:replace="~{fragments/navbar :: navbar}"></div>
 <!--    products -->
     <h1>Our Products</h1>
     <div class="products-container">
