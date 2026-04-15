@@ -1,6 +1,10 @@
 package com.ecommerce.esmsproject1.controller;
 
-import com.ecommerce.esmsproject1.repository.UserRepository;
+import org.springframework.ui.Model;
+import com.ecommerce.esmsproject1.entity.Product;
+import com.ecommerce.esmsproject1.repository.ProductsRepository;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.ecommerce.esmsproject1.repository.UserRepository;
@@ -8,9 +12,16 @@ import com.ecommerce.esmsproject1.entity.User;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Controller
 public class HomeController {
 
+    @Autowired
+    private ProductsRepository productsRepository;
+
+    @Autowired
     private final UserRepository userRepository;
 
     public HomeController(UserRepository userRepository) {
@@ -18,7 +29,13 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String home() {
+    public String home(Model model) {
+        List<Product> products = productsRepository.findAll()
+                .stream()
+                .distinct()
+                .limit(6)
+                .collect(Collectors.toList());
+        model.addAttribute("products", products);
         return "home";
     }
 

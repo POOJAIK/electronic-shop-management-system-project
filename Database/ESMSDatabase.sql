@@ -41,3 +41,32 @@ alter table bills modify column total_amount double;
 
 set sql_safe_updates = 1;
 
+select * from Products;
+select id, name from products order by id;
+
+set sql_safe_updates = 0;
+
+delete p1 from products p1
+inner join products p2
+where p1.id > p2.id
+and p1.name = p2.name;
+
+set sql_safe_updates = 1;
+
+select id, name from products;
+select name, count(*) from products group by name;
+
+select id, name, email from users order by email;
+
+set sql_safe_updates = 0;
+
+delete from users where id not in (
+	select min_id from (
+		select min(id) as min_id from users group by email
+        ) as temp
+);
+
+set sql_safe_updates = 1;
+
+select id, name, email from users;
+select * from users;

@@ -30,6 +30,8 @@ public class ProductsController {
         List<Product> productsList = productsRepository.findAll();
         model.addAttribute("productsList", productsList);
 
+        model.addAttribute("products", productsRepository.findAll());
+
         System.out.println("Total Products : " + productsList.size());
         return "products";
     }

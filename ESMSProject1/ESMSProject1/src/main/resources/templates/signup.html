@@ -5,35 +5,101 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup - ESMS</title>
-    <link rel="stylesheet" href="/css/Style.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/auth.css"/>
 </head>
 <body>
 <!--navbar-->
 
-<div th:replace="~{fragments/navbar :: navbar}"></div>
+<!--<div th:replace="~{fragments/navbar :: navbar}"></div>-->
+<!--left side-->
+<div class="auth-left">
+    <div class="auth-left-content">
+        <a href="/" class="auth-logo">E<span>S</span>MS</a>
+        <h2>Join Us Today!</h2>
+        <p>Create your account and start shopping premium electronics at best prices.</p>
+        <div class="auth-features">
+            <div class="auth-feature">
+                <span class="af-icon">🎁</span>
+                <span>Exclusive Member Deals</span>
+            </div>
+            <div class="auth-feature">
+                <span class="af-icon">📦</span>
+                <span>Track Your Orders</span>
+            </div>
+            <div class="auth-feature">
+                <span class="af-icon">💬</span>
+                <span>24/7 Customer Support</span>
+            </div>
+            <div class="auth-feature">
+                <span class="af-icon">🔄</span>
+                <span>Easy 7-Day Returns</span>
+            </div>
+        </div>
+    </div>
+</div>
 
-<!--signup form-->
+<!--right side signup form-->
+<div class="auth-right">
+    <div class="auth-card">
 
-    <h2>Customer Registration</h2><br>
+        <div class="auth-card-header">
+            <h3>Create your account</h3>
+            <p>Fill in your details to get started</p>
+        </div>
 
-<form action="/register" method="post">
-    <label>Name:</label><br>
-    <input type="text" name="name" required><br><br>
+        <form action="/register" method="post">
 
-    <label>Email:</label><br>
-    <input type="email" name="email" required><br><br>
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text"
+                        name="fullname"
+                        placeholder="Enter your Full Name"
+                        required/>
+            </div>
 
-    <label>Password:</label><br>
-    <input type="password" name="password" required><br><br>
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email"
+                        name="email"
+                        placeholder="Enter your Email Address"
+                        required/>
+            </div>
 
-    <label>Address:</label><br>
-    <textarea name="address"></textarea><br><br>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password"
+                        name="password"
+                        placeholder="Enter your Password"
+                        required/>
+            </div>
 
-    <button type="submit">Register</button>
-</form>
+            <div class="form-group">
+                <label>Address</label>
+                <textarea name="address"
+                          placeholder="Enter your Address"
+                          rows="3"></textarea>
+            </div>
 
-<br>
-<a href="/">Back to home</a>
+            <button type="submit" class="auth-button">
+                Create Account →
+            </button>
+
+        </form>
+
+        <div class="auth-divider">
+            <span>OR</span>
+        </div>
+
+        <div class="auth-links">
+            <p>Already have an account?
+                <a href="/login">Login here</a>
+            </p>
+            <a href="/" class="back-link">← Back to Home</a>
+        </div>
+    </div>
+</div>
 
 </body>
 
