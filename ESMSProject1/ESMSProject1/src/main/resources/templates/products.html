@@ -31,13 +31,13 @@
     </div>
     <div class="filter-btns">
         <button class="filter-btn active"
-                onclick="filterProducts('all')">All</button>
+                data-filter="all">All</button>
         <button class="filter-btn"
-                onclick="filterProducts('laptop')">Laptop</button>
+                data-filter="laptop">Laptop</button>
         <button class="filter-btn"
-                onclick="filterProducts('mobile')">Mobile</button>
+                data-filter="mobile">Mobile</button>
         <button class="filter-btn"
-                onclick="filterProducts('headphone')">Headphone</button>
+                data-filter="headphone">Headphone</button>
     </div>
 </section>
 
@@ -45,7 +45,7 @@
 <section class="products-container">
 
 <!--    koi product nahi hai -->
-    <div th:each="${#lists.isEmpty(productsList)}"
+    <div th:if="${productsList == null or #lists.isEmpty(productsList)}"
          class="no-products">
         <p> 😕 No Products Available! </p>
     </div>
@@ -55,16 +55,16 @@
         <div class="product-card"
              th:each="product : ${productsList}"
              th:attr="data-name=${product.name},
-                      data-category=${product.name}">
+                      data-category=${product.category}">
 <!--       products images     -->
             <div class="product-img">
-                <img th:if="${product.imagesUrl != null and !product.imagesUrl.isEmpty()}"
-                     th:src="${product.imagesUrl}"
+                <img th:if="${product.imageUrl != null and !product.imageUrl.isEmpty()}"
+                     th:src="${product.imageUrl}"
                      th:alt="${product.name}"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
 
                 <div class="product-emoji"
-                     th:style="${product.imagesUrl != null and !product.imagesUrl.isEmpty() ? 'display:none;' : 'display:flex;'}">
+                     th:style="${product.imageUrl != null and !product.imageUrl.isEmpty() ? 'display:none;' : 'display:flex;'}">
                     📦
                 </div>
             </div>
@@ -72,7 +72,7 @@
             <div class="product-body">
                 <div class="product-stock"
                      th:text="${product.stockQty > 0 ? 'In Stock' : 'Out of Stock'}"
-                     th:classappend="${product.stockQty > 0 ? 'in-stock' : 'out-stock'">
+                     th:classappend="${product.stockQty > 0 ? 'in-stock' : 'out-stock'}">
                 </div>
 
                 <h3 th:text="${product.name}">Product Name</h3>
@@ -84,7 +84,7 @@
                 </div>
 
                 <div class="product-stock-qty">
-                    <span th:text="${'Stock: ' + product.stockQty + 'units'}"></span>
+                    <span th:text="${'Stock: ' + product.stockQty + ' units'}"></span>
                 </div>
             </div>
         </div>
@@ -92,6 +92,6 @@
 </section>
 
 <!-- js file -->
-<script src="/js/products.js"></script>
+<script th:src="@{/js/products.js}"></script>
 </body>
 </html>

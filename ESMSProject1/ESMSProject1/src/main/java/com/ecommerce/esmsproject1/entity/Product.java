@@ -14,6 +14,7 @@ public class Product {
     private String description;
     private double price;
     private String imageUrl;
+    private String category;
 
     @Column(nullable = false)
     private int stockQty = 0;
@@ -21,11 +22,12 @@ public class Product {
     //constructors
     public Product() {}
 
-    public Product(String name, String description, double price, String imageUrl) {
+    public Product(String name, String description, double price, String imageUrl, String category) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.imageUrl = imageUrl;
+        this.category = category;
     }
 
     //Getters and setters
@@ -65,5 +67,8 @@ public class Product {
 
     public int getStockQty() { return stockQty; }
     public void setStockQty(int stockQty) { this.stockQty = stockQty; }
+
+    public String getCategory() { return category; }
+    public void setCategory(String category) {this.category = category; }
 
 }

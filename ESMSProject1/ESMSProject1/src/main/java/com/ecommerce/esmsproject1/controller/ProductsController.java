@@ -26,7 +26,7 @@ public class ProductsController {
             //Login nahi hai -> Login page pe bhejo
             return "redirect:/login";
         }
-
+ 
         List<Product> productsList = productsRepository.findAll();
         model.addAttribute("productsList", productsList);
 
