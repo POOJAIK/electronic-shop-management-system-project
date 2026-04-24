@@ -50,6 +50,7 @@ public class AuthController {
 
         if (existingUser != null && existingUser.getPassword().equals(user.getPassword())) {
             //login successful
+            session.setAttribute("username", existingUser.getName());
             session.setAttribute("loggedInUser", existingUser);
             //Products page pe bhejo
             return "redirect:/products";

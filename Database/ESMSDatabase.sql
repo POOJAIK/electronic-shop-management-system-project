@@ -5,7 +5,7 @@ use ESMSProjectdb;
 show tables;
 
 select * from Users;
-select * from Product;
+
 select * from Products;
 
 insert into products (id ,description, image_url,name, price)
@@ -70,3 +70,15 @@ set sql_safe_updates = 1;
 
 select id, name, email from users;
 select * from users;
+
+set sql_safe_updates = 0;
+
+update Products set category = 'laptop' where name like '%Laptop%';
+update Products set category = 'mobile' where name like '%Samsung%' or name like '%Mobile%';
+update Products set category = 'headphone' where name like '%Headphone%' or name like '%Sony%';
+
+set sql_safe_updates = 1;
+
+select id, name, category from products;
+
+select * from products;
