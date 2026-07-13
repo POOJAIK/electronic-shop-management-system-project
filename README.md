@@ -128,7 +128,7 @@ Products : Stores product details and stock
 bills : Stores bill header information
 bill_items : Stores individual items in each bill
 
-Admin Access 
+Admin Access
 URL: http://localhost:8080/admin
 Note: Login required to access admin panel
 
