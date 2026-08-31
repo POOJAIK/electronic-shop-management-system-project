@@ -12,5 +12,4 @@ public class EsmsProject1Application {
 
 		SpringApplication.run(EsmsProject1Application.class, args);
 	}
-
 }

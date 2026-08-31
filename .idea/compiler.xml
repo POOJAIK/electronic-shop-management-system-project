@@ -12,7 +12,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="ESMSProject1" options="-parameters" />
+      <module name="ESMSProject1" options="-parameters --add-exports java.base/jdk.internal.icu.impl=ALL-UNNAMED" />
     </option>
   </component>
 </project>
