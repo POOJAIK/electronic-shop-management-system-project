@@ -251,3 +251,28 @@ height: 200px;
     .products-header { padding: 40px 20px; }
     .products-header h1 { font-size: 32px; }
 }
+
+.pagination-wrapper {
+    padding: 20px 0 40px;
+}
+
+.pagination .page-link {
+    background-color: #1e1e2e;
+    border: 1px solid #7c3aed;
+    color: #a78bfa;
+    border-radius: 8px;
+    margin: 2px;
+    transition: all 0.2s;
+}
+
+.pagination .page-link:hover {
+    background-color: #7c3aed;
+    color: white;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #111827;
+    color: #4b5563;
+    border-color: #374151;
+    cursor: not-allowed;
+}

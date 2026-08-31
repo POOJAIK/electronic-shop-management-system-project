@@ -91,6 +91,13 @@
                 <p>Don't have an account?
                     <a href="/signup">Sign up free</a>
                 </p>
+                <a href="/forgot-password" class="back-link"
+                    style="color:#a78bfa;font-weight:600">
+                    Forgot your password?
+                </a>
+                <div th:if="${param.reset}" class="auth-alert auth-alert-success">
+                    ✅ Password reset successful! Again login.
+                </div>
                 <a href="/" class="back-link">← Back to Home</a>
             </div>
         </div>

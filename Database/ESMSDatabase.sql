@@ -5,7 +5,7 @@ use ESMSProjectdb;
 show tables;
 
 select * from Users;
-
+truncate table users;
 select * from Products;
 
 insert into products (id ,description, image_url,name, price)
@@ -82,3 +82,19 @@ set sql_safe_updates = 1;
 select id, name, category from products;
 
 select * from products;
+
+select id, name, email, password from users order by id desc limit 5;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
