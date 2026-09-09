@@ -24,7 +24,24 @@ public class EmailService {
                  "If you did not request this, ignore this email.\n\n" +
                  "_ ESMS Team"
         );
+        mailSender.send(message);
+    }
 
+    public void sendWelcomeEmail(String toEmail,String userName) {
+        SimpleMailMessage message = new SimpleMailMessage();
+
+        message.setTo(toEmail);
+        message.setSubject("Welcome to ESMS - Account Created Successfully!");
+        message.setText(
+                "Hello " + userName + "! \n\n" +
+                 "Welcome to Electronic Shop Management System! \n\n" +
+                 " Your account has been created successfully.\n\n" +
+                 " Email   : " + toEmail + "\n" +
+                 " Username: " + userName + "\n" +
+                 " You can now login at: http://localhost:8080/login\n\n" +
+                 " Thank you for joining us! \n\n" +
+                 " Team ESMS"
+        );
         mailSender.send(message);
     }
 }

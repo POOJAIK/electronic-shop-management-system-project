@@ -8,11 +8,11 @@
 		<version>4.0.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.ecommerce</groupId>
+	<groupId>com.ecommerce.esmsproject1</groupId>
 	<artifactId>ESMSProject1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ESMSProject1</name>
-	<description>Demo project for Spring Boot</description>
+	<name>ESMS - Electronic Shop Management System</name>
+	<description>Electronic Shop Management System - A full-stack web application for managing shop inventory, billing, and user accounts built with Spring Boot, Spring Security, JPA, and MySQL</description>
 	<url/>
 	<licenses>
 		<license/>

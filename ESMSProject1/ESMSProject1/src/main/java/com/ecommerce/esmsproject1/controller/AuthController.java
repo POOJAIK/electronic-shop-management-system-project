@@ -39,6 +39,34 @@ public class AuthController {
         return "signup";
     }
 
+    @PostMapping("/signup")
+    public String signup(@ModelAttribute User user, Model model) {
+
+        //Email already exists check
+        User existing = userRepository.findByEmail(user.getEmail());
+        if (existing != null) {
+            model.addAttribute("error", "Email already registered!");
+            return "signup";
+        }
+        //Password validation
+        if (!isValidPassword(user.getPassword())) {
+            model.addAttribute("error","Password must be 8+ chars with uppercase, lowercase, number & special character!");
+            return "signup";
+        }
+
+        //Save user with BCrypt
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
+
+        //Welcome Email Send
+        try {
+            emailService.sendWelcomeEmail(user.getEmail(),user.getName());
+        } catch (Exception e) {
+            System.out.println(" Email send failed: "  + e.getMessage());
+        }
+        return "redirect:/login?registered=true";
+    }
+
     //form submit hone pe yahan aayega
     @PostMapping("/register")
     public String registerUser(@ModelAttribute User user, Model model) {
@@ -214,7 +242,7 @@ public class AuthController {
         boolean hasUpper = password.chars().anyMatch(Character::isUpperCase);
         boolean hasLower = password.chars().anyMatch(Character::isLowerCase);
         boolean hasDigit = password.chars().anyMatch(Character::isDigit);
-        boolean hasSpecial = password.matches(" .*[!@#$%^&*()_+=\\[\\]{}|;:,<>?/~`-].*");
+        boolean hasSpecial = password.matches(".*[!@#$%^&*()_+=\\[\\]{}|;:,<>?/~`-].*");
         return hasUpper && hasLower && hasDigit && hasSpecial;
     }
 }

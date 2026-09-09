@@ -29,7 +29,6 @@ public class SecurityConfig {
 //                        .logoutUrl("/logout")
 //                        .permitAll()
 //                )
-
                 //formlogin hatao - custom controller use karega
                 .formLogin(form -> form.disable())
                 .logout(logout -> logout.disable()

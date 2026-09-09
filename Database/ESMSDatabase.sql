@@ -5,7 +5,9 @@ use ESMSProjectdb;
 show tables;
 
 select * from Users;
+
 truncate table users;
+
 select * from Products;
 
 insert into products (id ,description, image_url,name, price)
@@ -85,8 +87,7 @@ select * from products;
 
 select id, name, email, password from users order by id desc limit 5;
 
-
-
+select * from password_reset_token;
 
 
 
