@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product -ESMS</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div><br>
+
+<h2>Add New Product</h2>
+
+<form action="/admin/add" method="post"><br>
+
+    <label>Name:</label><br>
+    <input type="text" name="name" required><br><br>
+
+    <label>Description:</label><br>
+    <input type="text" name="description"><br><br>
+
+    <label>Price:</label><br>
+    <input type="number" name="price" step="0.01" required><br><br>
+
+    <label>Image URL:</label><br>
+    <input type="text" name="imageUrl" placeholder="/images/product.jpg"><br><br>
+
+    <label>Stock Quantity</label>
+    <input type="number" name="stockQty" value="0" min="0"required><br><br>
+
+    <button type="submit">Add Product</button><br><br>
+    <a href="/admin">Cancel</a>
+
+</form>
+
+</body>
+</html>

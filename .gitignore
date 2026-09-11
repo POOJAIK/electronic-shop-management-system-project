@@ -1,33 +1,10 @@
-HELP.md
-target/
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+# Ignore application configuration with secrets
+#ESMSProject1/ESMSProject1/src/main/resources/application.properties
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
+ESMSProject1/ESMSProject1/src/main/resources/application.properties
 
-### IntelliJ IDEA ###
+#Ignore IntelliJ project files
 .idea
-*.iws
-*.iml
-*.ipr
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
-.vscode/
+#Ignore build files
+target/

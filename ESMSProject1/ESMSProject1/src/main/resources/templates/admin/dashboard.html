@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - ESMS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container mt-4">
+
+    <h2>Admin Dashboard</h2>
+
+    <!--  stats cards  -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Total Products</h5>
+                    <h2 th:text="${totalProducts}">0</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Total Bills</h5>
+                    <h2 th:text="${totalBills}">0</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Total Revenue</h5>
+                    <h2>₹<span th:text="${totalRevenue}">0</span></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- success/error messages -->
+    <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+    <!-- low stock alert  -->
+    <div th:if="${lowStockProducts != null and !lowStockProducts.isEmpty()}"
+         class="alert alert-warning">
+        <strong>⚠ Low Stock Alert!</strong>
+        <ul class="mb-0 mt-2">
+            <li th:each="p : ${lowStockProducts}">
+                <span th:text="${p.name}"></span> -
+                Only <strong th:text="${p.stockQty}"></strong> left!
+            </li>
+        </ul>
+    </div>
+
+    <!-- Products tables -->
+    <h4 class="mb-3">All Products</h4>
+    <a href="/admin/add" class="btn btn-primary mb-3">Add New Product</a>
+
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.id}"></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.description}"></td>
+                <td th:text="${'₹' + #numbers.formatInteger(product.price, 1, 'COMMA')}"></td>
+                <td>
+                    <span th:text="${product.stockQty}"
+                          th:style="${product.stockQty < 5} ? 'color:red; font-weight:bold;' : 'color:green;'">
+                    </span>
+                </td>
+
+                <td>
+                    <a th:href="@{/admin/edit/{id}(id=${product.id})}"
+                    class="btn btn-sm btn-warning">Edit</a>
+                    &nbsp;&nbsp;
+                    <a th:href="@{/admin/delete/{id}(id=${product.id})}"
+                       class="btn btn-sm btn-danger"
+                       onclick="return confirm('Are you sure?')">Delete</a>
+                    &nbsp;&nbsp;
+                    <form th:action="@{/admin/stock/add/{id}(id=${product.id})}"
+                    method="post" class="d-inline" >
+                        <input type="number" name="qty" value="1" min="1"
+                              class="form-control form-control-sm d-inline" style="width:55px"/>
+                        <button type="submit" class="btn btn-sm btn-success"> Add</button>
+                    </form>
+                    &nbsp;&nbsp;
+                    <form th:action="@{/admin/stock/reduce/{id}(id=${product.id})}"
+                          method="post" class="d-inline" >
+                        <input type="number" name="qty" value="1" min="1"
+                              class="form-control form-control-sm d-inline" style="width:55px"/>
+                        <button type="submit" class="btn btn-sm btn-danger"> Reduce</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+<!-- Recent bills -->
+    <h4 class="mt-5 mb-3">Recent Bills</h4>
+    <div th:if="${recentBills.isEmpty()}" class="alert alert-info">
+        Koi bills nahi hai abhi!
+    </div>
+    <table th:if="${!recentBills.isEmpty()}" class="table table-bordered table-hover">
+        <thead class="table-dark">
+        <tr>
+            <th>Bill ID</th>
+            <th>Customer</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="bill : ${recentBills}">
+            <td th:text="${bill.id}"></td>
+            <td th:text="${bill.customerName}"></td>
+            <td>₹<span th:text="${bill.totalAmount}"></span></td>
+            <td th:text="${bill.createdAt}"></td>
+            <td>
+                <a th:href="@{/admin/billing/view/{id}(id=${bill.id})}"
+                   class="btn btn-sm btn-info">View</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
