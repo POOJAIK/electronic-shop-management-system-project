@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Bill - ESMS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container mt-4">
+    <h2 class="mt-4">Create New Bill</h2>
+
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+    <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+
+    <form action="/admin/billing/save" method="post">
+
+        <!-- Customer Name -->
+        <div class="mb-3">
+            <label class="form-label">Customer Name</label>
+            <input type="text" name="customerName" class="form-control"
+                   placeholder="Enter customer name" required/>
+        </div>
+
+        <!-- Products table-->
+        <h5 class="mb-3">Select Products</h5>
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Available Stock</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product : ${products}">
+                    <td>
+                        <span th:text="${product.name}"></span>
+                        <input type="hidden" name="productIds" th:value="${product.id}"/>
+                    </td>
+                    <td th:text="${'₹' + #numbers.formatInteger(product.price, 1, 'COMMA')}"></td>
+                    <td>
+                        <span th:text="${product.stockQty}"
+                              th:style="${product.stockQty < 5} ? 'color:red; font-weight:bold;' : 'color:green;'">
+                        </span>
+                    </td>
+                    <td>
+                        <input type="number" name="quantities" value="0" min="0"
+                               th:max="${product.stockQty}"
+                               class="form-control form-contol-sm" style="width:80px"/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!--Buttons -->
+        <button type="submit" class="btn btn-primary">Save Bill</button>
+        <a href="/admin/billing" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+</body>
+</html>

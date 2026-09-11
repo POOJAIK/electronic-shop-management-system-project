@@ -1,0 +1,13 @@
+package com.ecommerce.esmsproject1;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class EsmsProject1ApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}

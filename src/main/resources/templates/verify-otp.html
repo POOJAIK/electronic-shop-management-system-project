@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify-otp - ESMS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+</head>
+<body>
+<div class="auth-page">
+    <div class="auth-left">
+        <div class="auth-left-content">
+            <a href="/" class="auth-logo">E<span>S</span>MS</a>
+            <h2>Reset Your Password</h2>
+            <p>Enter your registered email. We'll send a 6-digit OTP to reset your password.</p>
+            <div class="auth-features">
+                <div class="auth-feature"><span class="af-icon">📧</span><span>OTP sent to your email</span></div>
+                <div class="auth-feature"><span class="af-icon">⏱️</span><span>OTP valid for 10 minutes</span></div>
+                <div class="auth-feature"><span class="af-icon">🔒</span><span>Secure password reset</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="auth-right">
+        <div class="auth-card">
+            <div class="auth-card-header">
+                <h3>Enter OTP</h3>
+                <p th:text=" 'OTP sent to: ' + ${email}"></p>
+            </div>
+            <div th:if="${error}"
+                 style="background:#ff000022;color:#ff6b6b;padding:10px;border-radius:8px;margin-bottom:15px">
+                ❌ <span th:text="${error}"></span>
+            </div>
+            <form action="verify-otp.html" method="post">
+                <input type="hidden" name="email" th:value="${email}"/>
+                <div class="form-group">
+                    <label>6-Digital OTP</label>
+                    <input type="text" name="otp"
+                            maxlength="6"
+                            pattern="[0-9]{6}"
+                            style="letter-spacing:8px;font-size:22px;text-align:center"
+                            required/>
+                </div>
+                <button type="submit" class="auth-btn">Verify OTP →</button>
+            </form>
+            <div style="text-align:center;margin-top:16px">
+                <a href="/forgot-password" style="color:#a78bfa;font-size:13px">
+                    Resent OTP
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

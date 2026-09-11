@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ESMS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/auth.css">
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body>
+
+<!--<div th:replace="~{fragments/navbar :: navbar}"></div>-->
+
+<!--login form-->
+<div class="auth-page">
+        <!--    left side -->
+    <div class="auth-left">
+        <div class="auth-left-content">
+            <a href="/" class="auth-logo">E<span>S</span>MS</a>
+            <h2>Welcome Back!</h2>
+            <p>Login to access your account and explore premium electronics.</p>
+            <div class="auth-features">
+                <div class="auth-feature">
+                    <span class="af-icon">🛒</span>
+                    <span>500+ Premium Products</span>
+                </div>
+                <div class="auth-feature">
+                    <span class="af-icon">🚚</span>
+                    <span>Fast Delivery Across India</span>
+                </div>
+                <div class="auth-feature">
+                    <span class="af-icon">🔒</span>
+                    <span>100% Secure Payments</span>
+                </div>
+                <div class="auth-feature">
+                    <span class="af-icon">⭐</span>
+                    <span>4.9 Star Rated Service</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!--    right side form-->
+
+    <div class="auth-right">
+        <div class="auth-card">
+            <div class="auth-card-header">
+                <h3>Login to your account</h3>
+                <p>Enter your credentials to continue</p>
+            </div>
+
+        <!--  error messages -->
+            <div th:if="${param.error}" class="auth-alert auth-alert-error">
+                ❌ Invalid email or password!
+            </div>
+
+        <!--  success messages-->
+            <div th:if="${param.registered}"
+                 style="background:black; color:#51cf66; padding:10p;
+                borfer-radius:8px; margin-bottom:15px; text-align:center;">
+                ✅ Account created! Please login now.
+            </div>
+
+            <form action="/login" method="post">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email"
+                           name="email"
+                           placeholder="Enter your email"
+                           required/>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <div class="password-wrapper">
+                    <input type="password"
+                           id="loginPassword"
+                            name="password"
+                            placeholder="Enter your password"
+                            required/>
+                        <span class="eye-icon"
+                                onmousedown="showPassword()"
+                                onmouseup="hidePassword()"
+                                onmouseleave="hidePassword()">👁️</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="auth-btn">
+                    Login →
+                </button>
+            </form>
+
+            <div class="auth-divider">
+                <span>or</span>
+            </div>
+
+            <div class="auth-links">
+                <p>Don't have an account?
+                    <a href="/signup">Sign up free</a>
+                </p>
+                <a href="/forgot-password" class="back-link"
+                    style="color:#a78bfa;font-weight:600">
+                    Forgot your password?
+                </a>
+                <div th:if="${param.reset}" class="auth-alert auth-alert-success">
+                    ✅ Password reset successful! Again login.
+                </div>
+                <a href="/" class="back-link">← Back to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function showPassword() {
+        document.getElementById('loginPassword').type = 'text';
+    }
+    function hidePassword() {
+        document.getElementById('loginPassword').type = 'password';
+</script>
+</body>
+</html>
